@@ -219,7 +219,7 @@ def main(genomes, config):
 
         for x, bird in enumerate(birds):
             output = nets[x].activate((bird.y,abs(bird.y - pipe.top_crd),abs(bird.y - pipe.bottom_crd)))
-            if output[0] > 0.5 and bird.tick == 0 and bird.allow == True:
+            if output[0] > 0.5 :
                 bird.vel = jump
                 bird.angle = 360
 
