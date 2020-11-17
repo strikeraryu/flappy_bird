@@ -4,16 +4,17 @@ import neat
 pygame.init()
 
 #load images
-yellow_bird = [pygame.image.load('ybird_mid.png'), pygame.image.load('ybird_down.png'), pygame.image.load('ybird_up.png')]
-blue_bird = [pygame.image.load('bbird_mid.png'), pygame.image.load('bbird_down.png'), pygame.image.load('bbird_up.png')]
-red_bird = [pygame.image.load('rbird_mid.png'), pygame.image.load('rbird_down.png'), pygame.image.load('rbird_up.png')]
-day = pygame.image.load('bg_day.png')
-night = pygame.image.load('bg_night.png')
-base = pygame.image.load('base.png')
-msg = pygame.image.load('tap.png')
-gameover = pygame.image.load('gameover.png')
-pipe_bottom = pygame.image.load('pipe_green.png')
-digit = [pygame.image.load('0.png'), pygame.image.load('1.png'), pygame.image.load('2.png'), pygame.image.load('3.png'), pygame.image.load('4.png'), pygame.image.load('5.png'), pygame.image.load('6.png'), pygame.image.load('7.png'), pygame.image.load('8.png'), pygame.image.load('9.png')]
+yellow_bird = [pygame.image.load('assets/ybird_mid.png'), pygame.image.load('assets/ybird_down.png'), pygame.image.load('assets/ybird_up.png')]
+blue_bird = [pygame.image.load('assets/bbird_mid.png'), pygame.image.load('assets/bbird_down.png'), pygame.image.load('assets/bbird_up.png')]
+red_bird = [pygame.image.load('assets/rbird_mid.png'), pygame.image.load('assets/rbird_down.png'), pygame.image.load('assets/rbird_up.png')]
+day = pygame.image.load('assets/bg_day.png')
+night = pygame.image.load('assets/bg_night.png')
+base = pygame.image.load('assets/base.png')
+msg = pygame.image.load('assets/tap.png')
+gameover = pygame.image.load('assets/gameover.png')
+pipe_bottom = pygame.image.load('assets/pipe_green.png')
+digit = [pygame.image.load('assets/0.png'), pygame.image.load('assets/1.png'), pygame.image.load('assets/2.png'), pygame.image.load('assets/3.png'), pygame.image.load('assets/4.png'), pygame.image.load('assets/5.png'), pygame.image.load('assets/6.png'), pygame.image.load('assets/7.png'), pygame.image.load('assets/8.png'), pygame.image.load('assets/9.png')]
+
 bg = random.choice([day, night])
 flappy_bird = random.choice([yellow_bird, blue_bird, red_bird])
 #constant value
@@ -113,7 +114,6 @@ class Pipe(object):
             if self.x[i] < tmpx and n_crd >= 100:
                 tmpx = self.x[i]
                 tmp = self.y[i]  
-        pygame.draw.circle(win,(0,0,0),(100,tmp),1)
         self.top_crd = tmp - self.gap
         self.bottom_crd = tmp   
 
@@ -237,5 +237,5 @@ def main(genomes, config):
         redrawgamewindow()
 
 if __name__ == "__main__":      
-    config_path = 'config-feedforward.txt'
+    config_path = 'config/config-feedforward.txt'
     start_test(config_path)

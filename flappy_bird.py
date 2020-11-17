@@ -7,16 +7,16 @@ game_run = True
 # __GAME__  !!Flappy Bird!!
 while game_run:
 #load images
-    yellow_bird = [pygame.image.load('ybird_mid.png'), pygame.image.load('ybird_down.png'), pygame.image.load('ybird_up.png')]
-    blue_bird = [pygame.image.load('bbird_mid.png'), pygame.image.load('bbird_down.png'), pygame.image.load('bbird_up.png')]
-    red_bird = [pygame.image.load('rbird_mid.png'), pygame.image.load('rbird_down.png'), pygame.image.load('rbird_up.png')]
-    day = pygame.image.load('bg_day.png')
-    night = pygame.image.load('bg_night.png')
-    base = pygame.image.load('base.png')
-    msg = pygame.image.load('tap.png')
-    gameover = pygame.image.load('gameover.png')
-    pipe_bottom = pygame.image.load('pipe_green.png')
-    digit = [pygame.image.load('0.png'), pygame.image.load('1.png'), pygame.image.load('2.png'), pygame.image.load('3.png'), pygame.image.load('4.png'), pygame.image.load('5.png'), pygame.image.load('6.png'), pygame.image.load('7.png'), pygame.image.load('8.png'), pygame.image.load('9.png')]
+    yellow_bird = [pygame.image.load('assets/ybird_mid.png'), pygame.image.load('assets/ybird_down.png'), pygame.image.load('assets/ybird_up.png')]
+    blue_bird = [pygame.image.load('assets/bbird_mid.png'), pygame.image.load('assets/bbird_down.png'), pygame.image.load('assets/bbird_up.png')]
+    red_bird = [pygame.image.load('assets/rbird_mid.png'), pygame.image.load('assets/rbird_down.png'), pygame.image.load('assets/rbird_up.png')]
+    day = pygame.image.load('assets/bg_day.png')
+    night = pygame.image.load('assets/bg_night.png')
+    base = pygame.image.load('assets/base.png')
+    msg = pygame.image.load('assets/tap.png')
+    gameover = pygame.image.load('assets/gameover.png')
+    pipe_bottom = pygame.image.load('assets/pipe_green.png')
+    digit = [pygame.image.load('assets/0.png'), pygame.image.load('assets/1.png'), pygame.image.load('assets/2.png'), pygame.image.load('assets/3.png'), pygame.image.load('assets/4.png'), pygame.image.load('assets/5.png'), pygame.image.load('assets/6.png'), pygame.image.load('assets/7.png'), pygame.image.load('assets/8.png'), pygame.image.load('assets/9.png')]
 
     bg = random.choice([day, night])
     flappy_bird = random.choice([yellow_bird, blue_bird, red_bird])
@@ -185,6 +185,7 @@ while game_run:
     start = False
     game = True
     allow = True
+    click = False
     score = 0
     bird = obj_gravity(100, 250, 0)
     gamebg = obj_moving(0, 0, 1)
@@ -201,9 +202,14 @@ while game_run:
                 pygame.quit()
                 quit()
 
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                click = True
+            elif event.type == pygame.MOUSEBUTTONUP:
+                click = False
+
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_UP] and bird.tick==0 and allow == True:
+        if (keys[pygame.K_UP] or keys[pygame.K_SPACE] or click)  and bird.tick==0 and allow == True:
             bird.vel = jump
             bird.angle = 360
             start = True
